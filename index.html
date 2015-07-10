@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html ng-app="todoApp">
+<head lang="en" manifest="todos.manifest">
+  <meta charset="UTF-8">
+  <title>Todos app</title>
+  <link rel="stylesheet" href="css/all.css"/>
+  <link rel="stylesheet" href="todos.css"/>
+
+</head>
+<body>
+
+<!-- NEXT STEP:
+split the module into components and use other 'best practices' techniques
+
+OTHER IDEAS:
+1)
+button to create another list, so two projects can be stored at same time?
+
+2) 'Print list' button/or 'save list as txt file' button
+ -->
+	<div class="centre" ng-controller="TodoController as todoCtrl">
+
+		<h1>My local list of TODO's</h1>
+		<p>IMPORTANT NOTE: This web app stores data locally in your browser - this means that your list isn't going to be available on another browser (or computer for that matter) </p>
+
+		<!-- The TODOs list -->
+		<div class="list_container">			
+			<h2>List:</h2>
+			<p>{{todoCtrl.remaining()}} items in {{todoCtrl.todos.length}} to do.</p>
+			<ul>
+				<li ng-repeat="todo in todoCtrl.todos track by $id($index)"><!-- Note additional "track by $id($index)" - this prevents angular from adding $$hashkey, which can become duplicated when used with localStorage - throwing errors with ng-repeat in the process (see https://docs.angularjs.org/error/ngRepeat/dupes) -->
+					<input type="checkbox" ng-model="todo.done">
+					<span class="done-{{todo.done}}">{{todo.text}}</span>
+				</li>
+			</ul>
+			<p class="align-right">[<a href="" ng-click="todoCtrl.clearCompleted()">Move completed items to the DONE pile</a> ]</p>
+
+		
+		
+			<form id="add_item_form">
+				<label for="add_item">Add a new TODO item:</label>
+				<input id="add_item" ng-model="todoCtrl.todoText" type="text" placeholder="Type a new todo here"/>
+				<button ng-click="todoCtrl.addTodo()">Add to list</button>
+			</form>
+
+		</div>
+
+		<!-- The DONE list -->
+		<div class="list_container donepile" ng-hide="todoCtrl.donepilehide">			
+			<h2>The DONE pile</h2>
+			<ul>
+				<li ng-repeat="doneitem in todoCtrl.donepile track by $id($index)">
+					<input type="checkbox" ng-model="doneitem.ticked">
+					<span>{{doneitem.text}}</span>
+				</li>
+			</ul>
+			<p class="align-right">[<a href="" ng-click="todoCtrl.manageDonePile('move')">Move checked items back to the TODOs list</a>]</p>
+			<p class="align-right">[<a href="" ng-click="todoCtrl.manageDonePile('clear')">Delete checked items from the DONE pile</a>]</p>
+			<p class="align-right">[<a href="" ng-click="todoCtrl.clearDoneList()">Clear all</a>]</p>
+		</div>
+
+
+
+		<div class="destroy">
+			<h2>!Destroy local data!</h2>
+			<p>CAUTION: This button will destroy your list. Forever.</p>
+			<button ng-click="todoCtrl.removeLocalStorageData()">Delete all data in local storage</button>
+		</div>
+		
+	</div>
+
+
+  <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+  <script src="js/localstorage.js"></script>
+  <script src="js/todo_module.js"></script>
+
+</body>
+</html>
