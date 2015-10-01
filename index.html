@@ -2,13 +2,18 @@
 <html ng-app="todoApp">
 <head lang="en" manifest="todos.manifest">
   <meta charset="UTF-8">
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Todos app</title>
   <link rel="stylesheet" href="css/all.css"/>
-  <link rel="stylesheet" href="todos.css"/>
 
 </head>
 <body>
+<main>
 
+	<!-- link back to homepage of Kitchensunk -->
+	<a href="/" class="to-home">back to KitchenSunk home</a>
+	
 <!-- NEXT STEP:
 split the module into components and use other 'best practices' techniques
 
@@ -33,7 +38,7 @@ button to create another list, so two projects can be stored at same time?
 					<span class="done-{{todo.done}}">{{todo.text}}</span>
 				</li>
 			</ul>
-			<p class="align-right">[<a href="" ng-click="todoCtrl.clearCompleted()">Move completed items to the DONE pile</a> ]</p>
+			<p class="alingment">[<a href="" ng-click="todoCtrl.clearCompleted()">Move completed items to the DONE pile</a> ]</p>
 
 		
 		
@@ -54,9 +59,9 @@ button to create another list, so two projects can be stored at same time?
 					<span>{{doneitem.text}}</span>
 				</li>
 			</ul>
-			<p class="align-right">[<a href="" ng-click="todoCtrl.manageDonePile('move')">Move checked items back to the TODOs list</a>]</p>
-			<p class="align-right">[<a href="" ng-click="todoCtrl.manageDonePile('clear')">Delete checked items from the DONE pile</a>]</p>
-			<p class="align-right">[<a href="" ng-click="todoCtrl.clearDoneList()">Clear all</a>]</p>
+			<p class="alingment">[<a href="" ng-click="todoCtrl.manageDonePile('move')">Move checked items back to the TODOs list</a>]</p>
+			<p class="alingment">[<a href="" ng-click="todoCtrl.manageDonePile('clear')">Delete checked items from the DONE pile</a>]</p>
+			<p class="alingment">[<a href="" ng-click="todoCtrl.clearDoneList()">Clear all</a>]</p>
 		</div>
 
 
@@ -69,7 +74,7 @@ button to create another list, so two projects can be stored at same time?
 		
 	</div>
 
-
+</main>
   <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
   <script src="js/localstorage.js"></script>
   <script src="js/todo_module.js"></script>

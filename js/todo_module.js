@@ -117,7 +117,7 @@ function TodoController(dataStorage){
 	}
 
 	function removeLocalStorageData(){
-		window.confirm('Are you absolutely sure? This will permenantly remove all your saved data.');
+		window.confirm('Are you absolutely sure? This will permenantly remove all your saved data for this ToDos list.');
 		localStorage.removeItem('todoslist');
 		localStorage.removeItem('donelist');
 
